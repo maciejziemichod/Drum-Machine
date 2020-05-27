@@ -1,25 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Display from "./components/Display.js";
+import DrumPad from "./components/DrumPad.js";
 import "./App.css";
 
-function DrumPad(props) {
-  return (
-    <div id={props.id} className="drum-pad bg-light w-75 text-dark m-2 p-3">
-      {props.text}
-      <audio src="" className="clip" id={props.text}></audio>
-    </div>
-  );
-}
-
-function Display(props) {
-  return (
-    <div id="display" className="bg-primary w-50 text-light mx-auto p-3 mb-4">
-      {props.text}
-    </div>
-  );
-}
+const soundsData = [
+  { id: "", key: "Q", src: "", keyCode: 81 },
+  { id: "", key: "W", src: "", keyCode: 87 },
+  { id: "", key: "E", src: "", keyCode: 69 },
+  { id: "", key: "A", src: "", keyCode: 65 },
+  { id: "", key: "S", src: "", keyCode: 83 },
+  { id: "", key: "D", src: "", keyCode: 68 },
+  { id: "", key: "Z", src: "", keyCode: 90 },
+  { id: "", key: "X", src: "", keyCode: 88 },
+  { id: "", key: "C", src: "", keyCode: 67 },
+];
 
 function App() {
-  const pads = ["Q", "W", "E", "A", "S", "D", "Z", "X", "C"];
   return (
     <div
       id="drum-machine"
@@ -27,9 +23,13 @@ function App() {
     >
       <Display text="henlo" />
       <div className="pad-board">
-        {/* <DrumPad id="audioclip" text="Q" /> */}
-        {pads.map((pad) => (
-          <DrumPad key={pad} id={"audioclip " + pad} text={pad} />
+        {soundsData.map((sound) => (
+          <DrumPad
+            key={sound.key /*FIX to sound.id*/}
+            id={sound.id}
+            text={sound.key}
+            src={sound.src}
+          />
         ))}
       </div>
     </div>
@@ -41,7 +41,7 @@ export default App;
 // ===== TODO =====
 
 // example: https://codepen.io/freeCodeCamp/full/MJyNMd
-
+// mp3 from https://www.fesliyanstudios.com/royalty-free-sound-effects-download/drums-273
 // User Story #5: When I click on a .drum-pad element, the audio clip contained in its child audio element should be triggered.
 
 // User Story #6: When I press the trigger key associated with each .drum-pad, the audio clip contained in its child audio

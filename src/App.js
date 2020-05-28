@@ -4,15 +4,60 @@ import DrumPad from "./components/DrumPad.js";
 import "./App.css";
 
 const soundsData = [
-  { id: "", key: "Q", src: "", keyCode: 81 },
-  { id: "", key: "W", src: "", keyCode: 87 },
-  { id: "", key: "E", src: "", keyCode: 69 },
-  { id: "", key: "A", src: "", keyCode: 65 },
-  { id: "", key: "S", src: "", keyCode: 83 },
-  { id: "", key: "D", src: "", keyCode: 68 },
-  { id: "", key: "Z", src: "", keyCode: 90 },
-  { id: "", key: "X", src: "", keyCode: 88 },
-  { id: "", key: "C", src: "", keyCode: 67 },
+  {
+    id: "Bass",
+    key: "Q",
+    src: "https://www.fesliyanstudios.com/play-mp3/6650",
+    keyCode: 81,
+  },
+  {
+    id: "Sticks",
+    key: "W",
+    src: "https://www.fesliyanstudios.com/play-mp3/6679",
+    keyCode: 87,
+  },
+  {
+    id: "Hi-Hat-Closed",
+    key: "E",
+    src: "https://www.fesliyanstudios.com/play-mp3/6698",
+    keyCode: 69,
+  },
+  {
+    id: "Hi-Hat-Open",
+    key: "A",
+    src: "https://www.fesliyanstudios.com/play-mp3/6709",
+    keyCode: 65,
+  },
+  {
+    id: "Snare",
+    key: "S",
+    src: "https://www.fesliyanstudios.com/play-mp3/6764",
+    keyCode: 83,
+  },
+  {
+    id: "Floor-Tom",
+    key: "D",
+    src: "https://www.fesliyanstudios.com/play-mp3/6686",
+    keyCode: 68,
+  },
+  {
+    id: "Medium-Tom",
+    key: "Z",
+    src: "https://www.fesliyanstudios.com/play-mp3/6718",
+    keyCode: 90,
+  },
+  {
+    id: "Small-Tom",
+    key: "X",
+    src: "https://www.fesliyanstudios.com/play-mp3/6753",
+    keyCode: 88,
+  },
+  {
+    id: "Splash",
+    key: "C",
+    src: "https://www.fesliyanstudios.com/play-mp3/6780",
+    keyCode: 67,
+  },
 ];
 
 function App() {

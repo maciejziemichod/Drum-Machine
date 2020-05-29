@@ -16,3 +16,9 @@
 .clicked {
   background-color: rgb(161, 174, 250) !important;
 }
+
+@media (max-width: 600px) {
+  #drum-machine {
+    width:90vw !important;
+  }
+}

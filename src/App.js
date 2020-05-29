@@ -78,9 +78,30 @@ function App() {
     sound.currentTime = 0;
     sound.play();
     changeBackground(e.target.id);
-    // removing dashes
+    // setting display data and removing dashes
     setDisplay(e.target.id.split("-").join(" "));
   };
+
+  const handleKeyPress = (e) => {
+    for (let elem of soundsData) {
+      if (e.keyCode === elem.keyCode) {
+        const sound = document.getElementById(elem.key);
+        // it makes possible to spam any button, there is no need to wait until the sound stops playing
+        sound.currentTime = 0;
+        sound.play();
+        changeBackground(elem.id);
+        // setting display data and removing dashes
+        setDisplay(elem.id.split("-").join(" "));
+        break;
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+    // cleaning up listener
+    return () => document.removeEventListener("keydown", handleKeyPress);
+  });
 
   return (
     <div
@@ -104,24 +125,3 @@ function App() {
 }
 
 export default App;
-
-// ===== TODO =====
-
-// example: https://codepen.io/freeCodeCamp/full/MJyNMd
-// mp3 from https://www.fesliyanstudios.com/royalty-free-sound-effects-download/drums-273
-
-// User Story #6: When I press the trigger key associated with each .drum-pad, the audio clip contained in its child audio
-// element should be triggered (e.g. pressing the Q key should trigger the drum pad which contains the string "Q", pressing the
-// W key should trigger the drum pad which contains the string "W", etc.).
-
-// User Story #7: When a .drum-pad is triggered, a string describing the associated audio clip is displayed as the inner text of
-//  the #display element (each string must be unique).
-
-// User Story #1: I should be able to see an outer container with a corresponding id="drum-machine" that contains all other elements.
-// User Story #2: Within #drum-machine I can see an element with a corresponding id="display".
-// User Story #3: Within #drum-machine I can see 9 clickable drum pad elements, each with a class name of drum-pad, a unique id
-// that describes the audio clip the drum pad will be set up to trigger, and an inner text that corresponds to one of the following
-// keys on the keyboard: Q, W, E, A, S, D, Z, X, C. The drum pads MUST be in this order.
-// User Story #4: Within each .drum-pad, there should be an HTML5 audio element which has a src attribute pointing to an audio
-// clip, a class name of clip, and an id corresponding to the inner text of its parent .drum-pad (e.g. id="Q", id="W", id="E" etc.).
-// User Story #5: When I click on a .drum-pad element, the audio clip contained in its child audio element should be triggered.

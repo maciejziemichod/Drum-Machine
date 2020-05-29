@@ -61,19 +61,41 @@ const soundsData = [
 ];
 
 function App() {
+  const [display, setDisplay] = useState("");
+
+  //gives a quick background glimpse
+  const changeBackground = (element) => {
+    const pad = document.getElementById(element);
+    pad.classList.add("clicked");
+    setTimeout(() => {
+      pad.classList.remove("clicked");
+    }, 100);
+  };
+
+  const handleClick = (e) => {
+    const sound = document.getElementById(e.target.innerText);
+    // it makes possible to spam any button, there is no need to wait until the sound stops playing
+    sound.currentTime = 0;
+    sound.play();
+    changeBackground(e.target.id);
+    // removing dashes
+    setDisplay(e.target.id.split("-").join(" "));
+  };
+
   return (
     <div
       id="drum-machine"
       className="w-50 mx-auto bg-secondary text-light text-center p-3"
     >
-      <Display text="henlo" />
+      <Display text={display} />
       <div className="pad-board">
         {soundsData.map((sound) => (
           <DrumPad
-            key={sound.key /*FIX to sound.id*/}
+            key={sound.id}
             id={sound.id}
             text={sound.key}
             src={sound.src}
+            handleClick={handleClick}
           />
         ))}
       </div>
@@ -87,7 +109,6 @@ export default App;
 
 // example: https://codepen.io/freeCodeCamp/full/MJyNMd
 // mp3 from https://www.fesliyanstudios.com/royalty-free-sound-effects-download/drums-273
-// User Story #5: When I click on a .drum-pad element, the audio clip contained in its child audio element should be triggered.
 
 // User Story #6: When I press the trigger key associated with each .drum-pad, the audio clip contained in its child audio
 // element should be triggered (e.g. pressing the Q key should trigger the drum pad which contains the string "Q", pressing the
@@ -103,3 +124,4 @@ export default App;
 // keys on the keyboard: Q, W, E, A, S, D, Z, X, C. The drum pads MUST be in this order.
 // User Story #4: Within each .drum-pad, there should be an HTML5 audio element which has a src attribute pointing to an audio
 // clip, a class name of clip, and an id corresponding to the inner text of its parent .drum-pad (e.g. id="Q", id="W", id="E" etc.).
+// User Story #5: When I click on a .drum-pad element, the audio clip contained in its child audio element should be triggered.

@@ -8,3 +8,7 @@
   justify-items: center;
   align-items: center;
 }
+
+.clicked {
+  background-color: rgb(161, 174, 250) !important;
+}
